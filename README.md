@@ -1,5 +1,6 @@
+
 ---
-title: "Next.js on \U0001F917 Spaces"
+title: "Next.js auf \U0001F917 Spaces"
 emoji: "\U0001F433\U0001F917"
 colorFrom: blue
 colorTo: yellow
@@ -8,81 +9,81 @@ pinned: false
 license: agpl-3.0
 app_port: 3000
 ---
-<h1 align="center">Next.js on 🤗 Spaces</h1>
+<h1 align="center">Next.js auf 🤗 Spaces</h1>
 
 <p align="center">
-Run your ML demo with ease in a <a href="https://nextjs.org">Next.js</a> environment
+Führe deine ML-Demo einfach in einer <a href="https://nextjs.org">Next.js</a>-Umgebung aus.
 </p>
 
-At failfast, we're passionate about crafting demos with TypeScript, Next.js, and MUI. Inspired by the ease-of-use of Gradio and Streamlit within Hugging Face Spaces, we aim to deliver a similar developer experience to JavaScript enthusiasts. Our toolkit includes predefined MUI components, empowering you to build intuitive UIs for your ML demos.
+Bei failfast sind wir begeistert davon, Demos mit TypeScript, Next.js und MUI zu erstellen. Inspiriert von der Benutzerfreundlichkeit von Gradio und Streamlit innerhalb von Hugging Face Spaces möchten wir ein ähnliches Entwicklererlebnis für JavaScript-Enthusiasten bieten. Unser Toolkit enthält vordefinierte MUI-Komponenten, die es dir ermöglichen, intuitive Benutzeroberflächen für deine ML-Demos zu erstellen.
 
 ---
 
 <!-- toc -->
 
-- [Local development](#local-development)
-  * [Use the Docker container locally](#use-the-docker-container-locally)
-- [Secret Management](#secret-management)
-  * [Build-time](#build-time)
-  * [Runtime](#runtime)
-- [Dockerize an existing project](#dockerize-an-existing-project)
-- [Sync your GitHub repository with your 🤗 Space](#sync-your-github-repository-with-your-%F0%9F%A4%97-space)
-- [Cleanup your 🤗 Space](#cleanup-your-%F0%9F%A4%97-space)
-- [Development Roadmap](#development-roadmap)
+- [Lokale Entwicklung](#lokale-entwicklung)
+  * [Verwende den Docker-Container lokal](#verwende-den-docker-container-lokal)
+- [Verwaltung von Geheimnissen](#verwaltung-von-geheimnissen)
+  * [Build-Zeit](#build-zeit)
+  * [Laufzeit](#laufzeit)
+- [Dockerize ein bestehendes Projekt](#dockerize-ein-bestehendes-projekt)
+- [Synchronisiere dein GitHub-Repository mit deinem 🤗 Space](#synchronisiere-dein-github-repository-mit-deinem-%F0%9F%A4%97-space)
+- [Bereinige deinen 🤗 Space](#bereinige-deinen-%F0%9F%A4%97-space)
+- [Entwicklungs-Roadmap](#entwicklungs-roadmap)
 
 <!-- tocstop -->
 
 ---
 
-## Local development
+## Lokale Entwicklung
 
-1. Install the dependencies: `npm i`
-2. Start the local dev-server: `npm run dev`
-3. Open the app via [localhost:3000](http://localhost:3000)
+1. Installiere die Abhängigkeiten: `npm i`
+2. Starte den lokalen Entwicklungs-Server: `npm run dev`
+3. Öffne die App über [localhost:3000](http://localhost:3000)
 
-### Use the Docker container locally
+### Verwende den Docker-Container lokal
 
-> ℹ️ In order for the commands to work, you need at least Docker >= 20.10, as we use env-variables as secrets
+> ℹ️ Damit die Befehle funktionieren, benötigst du mindestens Docker >= 20.10, da wir Umgebungsvariablen als Geheimnisse verwenden.
 
-To make sure that everything is working out, you can run your container locally:
+Um sicherzustellen, dass alles funktioniert, kannst du deinen Container lokal ausführen:
 
-1. [Install Docker](https://docs.docker.com/get-docker/) on your machine
-2. Go into the `nextjs-hf-spaces` folder
-3. Build your Docker image: `docker build -t nextjs-hf-spaces .`
-4. Run your Docker container: `docker run -p 3000:3000 nextjs-hf-spaces`.
-5. Open the app via [localhost:3000](http://localhost:3000)
+1. [Installiere Docker](https://docs.docker.com/get-docker/) auf deinem Rechner.
+2. Gehe in den Ordner `nextjs-hf-spaces`.
+3. Erstelle dein Docker-Image: `docker build -t nextjs-hf-spaces .`
+4. Starte deinen Docker-Container: `docker run -p 3000:3000 nextjs-hf-spaces`.
+5. Öffne die App über [localhost:3000](http://localhost:3000).
 
-If you also have a secret that needs to be passed into the container, you can do this: 
+Wenn du auch ein Geheimnis hast, das in den Container übergeben werden muss, kannst du dies tun:
 
-1. Create a copy of `.env.local.example` and rename it to `.env.local` (it contains the secret `HF_EXAMPLE_SECRET`)
-2. Run your Docker container and specify the env-file: `docker run -p 3000:3000 --env-file .env.local nextjs-hf-spaces`
-3. Open the example API via [localhost:3000/api/env](http://localhost:3000/api/env) and see that the value of our secret `HF_EXAMPLE_SECRET` is shown
+1. Erstelle eine Kopie von `.env.local.example` und benenne sie in `.env.local` um (sie enthält das Geheimnis `HF_EXAMPLE_SECRET`).
+2. Starte deinen Docker-Container und gib die Umgebungsdatei an: `docker run -p 3000:3000 --env-file .env.local nextjs-hf-spaces`.
+3. Öffne die Beispiel-API über [localhost:3000/api/env](http://localhost:3000/api/env) und überprüfe, ob der Wert unseres Geheimnisses `HF_EXAMPLE_SECRET` angezeigt wird.
 
-## Secret Management
+## Verwaltung von Geheimnissen
 
-To not expose your secrets to end users, you can add them directly in **Settings** of your 🤗 Space.
+Um deine Geheimnisse nicht für Endbenutzer sichtbar zu machen, kannst du sie direkt in den **Einstellungen** deines 🤗 Spaces hinzufügen.
 
-1. Open your space and navigate to the **Settings**
-2. Find **Repository secrets** & click on **New secret**
-   
-That's it, you can now access your secret.
+1. Öffne deinen Space und navigiere zu den **Einstellungen**.
+2. Finde **Repository Secrets** und klicke auf **Neues Geheimnis**.
 
-### Build-time
+Das war's, du kannst nun auf dein Geheimnis zugreifen.
 
-If you need to have a secret during build-time (e.g. you want to install private npm packages), then you can add this directly into the `Dockerfile`:
+### Build-Zeit
+
+Wenn du während der Build-Zeit ein Geheimnis benötigst (z.B. möchtest du private npm-Pakete installieren), kannst du es direkt in die `Dockerfile` einfügen:
 
 ```dockerfile
-# Uncomment the following lines if you want to use a secret at buildtime, 
-# for example to access your private npm packages
+# Kommentiere die folgenden Zeilen ein, wenn du ein Geheimnis während der Buildzeit verwenden möchtest,
+# z.B. um auf deine privaten npm-Pakete zuzugreifen
 RUN --mount=type=secret,id=HF_EXAMPLE_SECRET,mode=0444,required=true \
     $(cat /run/secrets/HF_EXAMPLE_SECRET)
 ```
 
-In this case, we mount the secret `HF_EXAMPLE_SECRET` (using [Docker secrets](https://docs.docker.com/engine/swarm/secrets/)) inside and can use it. 
+In diesem Fall mounten wir das Geheimnis `HF_EXAMPLE_SECRET` (unter Verwendung von [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/)) und können es verwenden.
 
-### Runtime
+### Laufzeit
 
-When your 🤗 Space is running and you want to use a secret (e.g. access an API that requires authentication) without exposing it to the user, you can use it as an environment variable via `process.env`. 
+Wenn dein 🤗 Space läuft und du ein Geheimnis verwenden möchtest (z.B. um auf eine API zuzugreifen, die eine Authentifizierung erfordert), ohne es dem Benutzer preiszugeben, kannst du es als Umgebungsvariable über `process.env` verwenden.
 
 ```typescript
 import process from "node:process";
@@ -94,49 +95,48 @@ export default async function handler(
 ) {
   const exampleSecret = process.env.HF_EXAMPLE_SECRET;
 
-  // Your logic to access an API that requires authentication
+  // Deine Logik, um auf eine API zuzugreifen, die eine Authentifizierung erfordert
 
-  return response.status(200).json("We have access to an external API");
+  return response.status(200).json("Wir haben Zugriff auf eine externe API");
 }
 ```
 
-A simple example can be found at [nextjs-hf-spaces/api/env](https://huggingface.co/spaces/failfast/nextjs-hf-spaces/api/env). This will return the secret to see that it's working, but you wouldn't do this in your space, as you don't want to expose the secret to an end user. 
+Ein einfaches Beispiel findest du unter [nextjs-hf-spaces/api/env](https://huggingface.co/spaces/failfast/nextjs-hf-spaces/api/env). Dies gibt das Geheimnis zurück, um zu sehen, dass es funktioniert, aber du würdest dies in deinem Space nicht tun, da du das Geheimnis nicht einem Endbenutzer zeigen möchtest.
 
-## Dockerize an existing project
+## Dockerize ein bestehendes Projekt
 
-To add support for Docker to an existing project, just copy the `Dockerfile` into the root of the project and add the following to the `next.config.js` file:
+Um Unterstützung für Docker zu einem bestehenden Projekt hinzuzufügen, kopiere einfach die `Dockerfile` in das Stammverzeichnis des Projekts und füge Folgendes in die `next.config.js` Datei ein:
 
 ```js
 // next.config.js
 module.exports = {
-  // ... rest of the configuration.
+  // ... restliche Konfiguration
   output: "standalone",
 };
 ```
 
-This will build the project as a standalone app inside the Docker image.
+Dies baut das Projekt als eigenständige App innerhalb des Docker-Images.
 
-## Sync your GitHub repository with your 🤗 Space
+## Synchronisiere dein GitHub-Repository mit deinem 🤗 Space
 
-If you want to use all the features for collaborative development on GitHub, but keep your demo on 🤗 Spaces, then you can set up a GitHub action that will automatically push changes from GitHub into Spaces.
+Wenn du alle Funktionen für kollaborative Entwicklung auf GitHub nutzen möchtest, aber deine Demo auf 🤗 Spaces behalten willst, kannst du eine GitHub-Aktion einrichten, die Änderungen automatisch von GitHub in Spaces überträgt.
 
-> ℹ️ Git-LFS is required for files bigger than 10MB
+> ℹ️ Git-LFS ist erforderlich für Dateien größer als 10 MB.
 
-1. Create your repo on GitHub
-2. Create a [Github secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) named `HF_TOKEN` and use an [access token from Hugging Face](https://huggingface.co/settings/tokens) as its value (you must be logged in to do this)
-3. Update the workflow [sync_to_hf_spaces.yml](.github/workflows/sync_to_hf_spaces.yml)
-   - Configure `HF_USERNAME`: Replace `failfast` with the name of your 🤗 user account or your 🤗 organization
-   - Configure `HF_SPACE_NAME`: Replace `nextjs-hf-spaces` with the name of your 🤗 space
-4. Push the code into your repo on GitHub
+1. Erstelle dein Repository auf GitHub.
+2. Erstelle ein [GitHub-Geheimnis](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) namens `HF_TOKEN` und verwende ein [Zugriffstoken von Hugging Face](https://huggingface.co/settings/tokens) als dessen Wert (du musst eingeloggt sein, um dies zu tun).
+3. Aktualisiere den Workflow [sync_to_hf_spaces.yml](.github/workflows/sync_to_hf_spaces.yml).
+   - Konfiguriere `HF_USERNAME`: Ersetze `failfast` durch den Namen deines 🤗 Benutzerkontos oder deiner 🤗 Organisation.
+   - Konfiguriere `HF_SPACE_NAME`: Ersetze `nextjs-hf-spaces` durch den Namen deines 🤗 Spaces.
+4. Push den Code in dein Repository auf GitHub.
 
-This should force push changes in the **main** branch from GitHub into your 🤗 space.
+Dies sollte Änderungen im **main** Branch von GitHub in deinen 🤗 Space übertragen.
 
-For further information, you can check out the [guide on Hugging Face](https://huggingface.co/docs/hub/spaces-github-actions).
+Für weitere Informationen kannst du den [Leitfaden auf Hugging Face](https://huggingface.co/docs/hub/spaces-github-actions) nachlesen.
 
+## Bereinige deinen 🤗 Space
 
-## Cleanup your 🤗 Space
-
-You don't need all the demo content and examples? Then you can delete these resources to get a clean 🤗 Space:
+Du benötigst nicht alle Demo-Inhalte und Beispiele? Dann kannst du diese Ressourcen löschen, um einen sauberen 🤗 Space zu erhalten:
 
 * `src/pages/api/env.ts`
 * `src/components/example-components.tsx`
@@ -145,7 +145,7 @@ You don't need all the demo content and examples? Then you can delete these reso
 * `src/components/title.tsx`
 * `src/components/huggingface/huggingface.tsx`
 
-Update the `src/components/index.tsx` and remove:
+Aktualisiere die Datei `src/components/index.tsx` und entferne:
 
 ```jsx
 <Title />
@@ -157,19 +157,19 @@ Update the `src/components/index.tsx` and remove:
 <ExampleComponents />
 ```
 
-> i Got an idea how this could be better? Please let us know!
+> Hast du eine Idee, wie das besser gemacht werden könnte? Lass es uns wissen!
 
-## Development Roadmap
+## Entwicklungs-Roadmap
 
-The next milestones in no particular order are:
+Die nächsten Meilensteine in beliebiger Reihenfolge sind:
 
-* Components for all [`@huggingface/inference`](https://huggingface.co/docs/huggingface.js/inference/README) methods (WIP)
-* Components to use [langchain.js](https://js.langchain.com/docs)
-* Components to use [hyv](https://github.com/failfa-st/hyv)
-* Publish components on npm to make them usable outside of [nextjs-hf-spaces](https://github.com/failfa-st/nextjs-hf-spaces)
-* Provide templates for different use-cases, that are too complex for single components
-* Docs on how to use the components with all available options
+* Komponenten für alle [`@huggingface/inference`](https://huggingface.co/docs/huggingface.js/inference/README) Methoden (in Arbeit)
+* Komponenten zur Nutzung von [langchain.js](https://js.langchain.com/docs)
+* Komponenten zur Nutzung von [hyv](https://github.com/failfa-st/hyv)
+* Veröffentliche Komponenten auf npm, um sie außerhalb von [nextjs-hf-spaces](https://github.com/failfa-st/nextjs-hf-spaces) nutzbar zu machen.
+* Bereitstellung von Vorlagen für verschiedene Anwendungsfälle, die zu komplex für einzelne Komponenten sind.
+* Dokumentation zur Verwendung der Komponenten mit allen verfügbaren Optionen.
 
-> i Anything missing? Please let us know!
-
+> Fehlt etwas? Lass es uns wissen!
+```
 
